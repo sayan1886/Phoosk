@@ -844,16 +844,18 @@
 
 -(IBAction)didPressSharePhotoViaInstagram:(id)sender
 {
-    MCSAppDelegate* appDelegate = (MCSAppDelegate*)[UIApplication sharedApplication].delegate;
-    
-    // here i can set accessToken received on previous login
-    appDelegate.instagram.accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"accessToken"];
-    appDelegate.instagram.sessionDelegate = self;
-    if ([appDelegate.instagram isSessionValid]) {
-        ; // post image to instagram
-    } else {
-        [appDelegate.instagram authorize:[NSArray arrayWithObjects:@"comments", @"likes", nil]];
-    }
+//    MCSAppDelegate* appDelegate = (MCSAppDelegate*)[UIApplication sharedApplication].delegate;
+//    
+//    // here i can set accessToken received on previous login
+//    appDelegate.instagram.accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"accessToken"];
+//    appDelegate.instagram.sessionDelegate = self;
+//    if ([appDelegate.instagram isSessionValid]) {
+//        ; // post image to instagram
+//
+//    } else {
+//        [appDelegate.instagram authorize:[NSArray arrayWithObjects:@"comments", @"likes", nil]];
+//    }
+        [self ShareInstagram];
 }
 
 -(void)ShareInstagram
@@ -863,15 +865,34 @@
     UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, self.view.opaque, 0.0);
     [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIGraphicsEndImageContext();
-    NSString  *jpgPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/test.igo"];
+//    NSString  *jpgPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/test.igo"];
+//    NSURL *igImageHookFile = [[NSURL alloc] initWithString:[[NSString alloc] initWithFormat:@"file://%@", jpgPath]];
+//    self.dic.UTI = @"com.instagram.photo";
+//    self.dic = [self setupControllerWithURL:igImageHookFile usingDelegate:self];
+//    [self.dic presentOpenInMenuFromRect: rect    inView: self.view animated: YES ];
+    NSData *imageData = UIImageJPEGRepresentation(self.previewImageView.image, 1.0);
+    NSString *writePath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"instagram.igo"];
+    if (![imageData writeToFile:writePath atomically:YES]) {
+            // failure
+        NSLog(@"image save failed to path %@", writePath);
+//        [self activityDidFinish:NO];
+        return;
+    } else {
+            // success.
+    }
     
-    NSURL *igImageHookFile = [[NSURL alloc] initWithString:[[NSString alloc] initWithFormat:@"file://%@", jpgPath]];
-    //    NSURL *igImageHookFile = [[NSURL alloc] initWithString:[[NSString alloc] initWithFormat:@"file://%@", screenshot]];
-    
-    self.dic.UTI = @"com.instagram.photo";
-    self.dic = [self setupControllerWithURL:igImageHookFile usingDelegate:self];
-    self.dic=[UIDocumentInteractionController interactionControllerWithURL:igImageHookFile];
-    [self.dic presentOpenInMenuFromRect: rect    inView: self.view animated: YES ];
+        // send it to instagram.
+    NSURL *fileURL = [NSURL fileURLWithPath:writePath];
+    self.dic = [UIDocumentInteractionController interactionControllerWithURL:fileURL];
+    self.dic.delegate = self;
+    [self.dic setUTI:@"com.instagram.exclusivegram"];
+    NSURL *instagramURL = [NSURL URLWithString:@"instagram://media?id=MEDIA_ID"];
+    if ([[UIApplication sharedApplication] canOpenURL:instagramURL]) {
+        [self.dic presentOpenInMenuFromRect: rect    inView: self.view animated: YES ];
+    }
+    else {
+        NSLog(@"No Instagram Found");
+    }
     
 }
 
@@ -879,6 +900,10 @@
     UIDocumentInteractionController *interactionController = [UIDocumentInteractionController interactionControllerWithURL: fileURL];
     interactionController.delegate = interactionDelegate;
     return interactionController;
+}
+
+- (void)documentInteractionControllerWillPresentOpenInMenu:(UIDocumentInteractionController *)controller {
+    
 }
 
 - (IBAction)didPressSharePhotoViaEmail:(id)sender
@@ -979,6 +1004,5 @@
 	[[PSIdleTimer sharedInstance] unidle];
 	return [super nextResponder];
 }
-
 
 @end

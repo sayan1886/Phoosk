@@ -22,7 +22,7 @@
 
 #define PSAnimationDuration 0.3
 
-@interface PSViewController : UIViewController<iCarouselDataSource,iCarouselDelegate,PAPasscodeViewControllerDelegate,UIWebViewDelegate,UIAlertViewDelegate,MFMailComposeViewControllerDelegate,IGSessionDelegate>
+@interface PSViewController : UIViewController<iCarouselDataSource,iCarouselDelegate,PAPasscodeViewControllerDelegate,UIWebViewDelegate,UIAlertViewDelegate,MFMailComposeViewControllerDelegate,IGSessionDelegate,UIDocumentInteractionControllerDelegate>
 
 @property (nonatomic, strong) AVCaptureVideoPreviewLayer *previewLayer;
 @property (nonatomic, strong) AVCaptureStillImageOutput *stillImageOutput;
