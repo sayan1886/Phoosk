@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		177E6689183A81B500F0EF9E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 177E6688183A81B500F0EF9E /* Images.xcassets */; };
 		FC01EDD41837E8EE000CB2A5 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FC01EDD31837E8EE000CB2A5 /* libz.1.2.5.dylib */; };
 		FC01EDFE1837EAF3000CB2A5 /* blue-specs.png in Resources */ = {isa = PBXBuildFile; fileRef = FC01EDDC1837EAF3000CB2A5 /* blue-specs.png */; };
 		FC01EDFF1837EAF3000CB2A5 /* green-specs.png in Resources */ = {isa = PBXBuildFile; fileRef = FC01EDDD1837EAF3000CB2A5 /* green-specs.png */; };
@@ -140,6 +141,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		177E6688183A81B500F0EF9E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FC01EDD31837E8EE000CB2A5 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		FC01EDDC1837EAF3000CB2A5 /* blue-specs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blue-specs.png"; sourceTree = "<group>"; };
 		FC01EDDD1837EAF3000CB2A5 /* green-specs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "green-specs.png"; sourceTree = "<group>"; };
@@ -485,7 +487,6 @@
 		FC861E611833FB8100A30862 = {
 			isa = PBXGroup;
 			children = (
-				FC38950118393FFD003191BB /* Social.framework */,
 				FC01EDDA1837EAF3000CB2A5 /* Resources */,
 				FC861E761833FB8100A30862 /* Phoosk */,
 				FC861E6F1833FB8100A30862 /* Frameworks */,
@@ -504,6 +505,7 @@
 		FC861E6F1833FB8100A30862 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FC38950118393FFD003191BB /* Social.framework */,
 				FC3895031839402D003191BB /* libsqlite3.dylib */,
 				FC389452183910F5003191BB /* instagram_SDK */,
 				FC01EE281837EED8000CB2A5 /* MessageUI.framework */,
@@ -555,6 +557,7 @@
 				FC861EA61833FD3400A30862 /* PSLikeViewController.xib */,
 				FC861EA91833FD3400A30862 /* PSWoodenTrayView.h */,
 				FC861EAA1833FD3400A30862 /* PSWoodenTrayView.m */,
+				177E6688183A81B500F0EF9E /* Images.xcassets */,
 				FC861E771833FB8100A30862 /* Supporting Files */,
 			);
 			path = Phoosk;
@@ -780,6 +783,7 @@
 				FC01EE0D1837EAF3000CB2A5 /* MyriadPro-CondIt.otf in Resources */,
 				FC01EE0E1837EAF3000CB2A5 /* MyriadPro-It.otf in Resources */,
 				FC01EE0F1837EAF3000CB2A5 /* MyriadPro-Regular.otf in Resources */,
+				177E6689183A81B500F0EF9E /* Images.xcassets in Resources */,
 				FC01EE101837EAF3000CB2A5 /* MyriadPro-Semibold.otf in Resources */,
 				FC01EE111837EAF3000CB2A5 /* MyriadPro-SemiboldIt.otf in Resources */,
 				FC01EE121837EAF3000CB2A5 /* delete.png in Resources */,
@@ -957,6 +961,8 @@
 		FC861E911833FB8100A30862 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Facebook\"",
@@ -976,6 +982,8 @@
 		FC861E921833FB8100A30862 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Facebook\"",
